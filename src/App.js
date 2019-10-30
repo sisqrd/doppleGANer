@@ -2,15 +2,24 @@ import React from 'react';
 import axios from 'axios';
 import cover from './image/cover.jpg'
 import './App.css';
+import Classify from './Classify';
 
 class App extends React.Component {
   constructor(props){
     super(props)
       this.state=({
-        selectedFile:null
+        selectedFile:null,
+        currentPage:'Home',
       } )
+      this.onChangeHandler = this.onChangeHandler.bind(this);
   }
   
+  redirect(page){
+    this.setState({
+      currentPage: page,
+    })
+}
+
   onChangeHandler=event=>{
     console.log(event.target.files[0])
     this.setState({
@@ -27,10 +36,19 @@ class App extends React.Component {
     })
     .then((response)=> {
       console.log(response);
+      this.setState({
+        currentPage: 'Classify'
+      })
     }, (error)=>{
       console.log(error);
     })
     }
+
+    onClickHandler2=()=>{
+        this.setState({
+          currentPage: 'Classify'
+        })
+      }
   
 
   render() {
@@ -58,6 +76,7 @@ class App extends React.Component {
                 <label>Upload File</label>
                 <input type="file" name="file" className="form-control" onChange={this.onChangeHandler}/>
                 <button type="button" onClick={this.onClickHandler}>Upload</button>
+                <button type="button" onClick={this.onClickHandler2}>Test</button>
               </div>
             </div>
           </div>
@@ -69,7 +88,5 @@ class App extends React.Component {
     )
     }
 }
-
-    
 
 export default App;
