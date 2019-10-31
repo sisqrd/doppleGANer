@@ -12,6 +12,7 @@ class Home extends React.Component {
 
     onClick=()=>{
         console.log('Someone clicked the button');
+        this.props.redirect('About');
     }
 
     render() {

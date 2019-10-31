@@ -2,6 +2,7 @@ import React from 'react';
 import cover from './image/cover.jpg'
 import './App.css';
 import Home from './Home';
+import About from './About';
 
 class App extends React.Component {
     
@@ -12,17 +13,20 @@ class App extends React.Component {
       this.state = { currentPage: 'Home' }
     }
 
-    redirect(page) {
+    redirect = (page) => {
         this.setState(
             {
-                currentPage:page,
+                currentPage: page,
             }
         )
     }
 
     renderPage = () => {
-        if (this.state.currentPage === 'Home') return <Home/>;
-        else return //<App onComplete={this.onComplete}/>
+        if (this.state.currentPage === 'Home') return <Home redirect={this.redirect}/>;
+        if (this.state.currentPage === 'Classify') return <Home redirect={this.redirect}/>;
+        if (this.state.currentPage === 'Results') return <Home redirect={this.redirect}/>;
+        if (this.state.currentPage === 'About') return <About redirect={this.redirect}/>;
+        else return <Home redirect={this.redirect}/>;
     }
   
     render() {
