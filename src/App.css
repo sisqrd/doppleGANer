@@ -1,5 +1,6 @@
 h1 {
   color: white;
+  padding:30px;
 }
 
 p {
@@ -7,9 +8,33 @@ p {
   font-size: 12px;
 }
 
+#Analyze{
+  background-color: #282c34;
+}
+
+#Label{
+  background-color: #282c34;
+  height:100%;
+}
+
+#Form{
+  display: inline-block;
+}
+
+#formfield{
+  float:left
+}
+
+#button{
+  margin:30px;
+  height:50px;
+  width: 100px;
+}
+
 label{
   color: white;
-  padding:30px;
+  padding:10px;
+  float:left;
 }
 button {
   background-color:white;
@@ -18,8 +43,9 @@ button {
 
 .App {
   text-align: center;
-  padding: 30px; 
+  padding: 50px; 
   background-color: #282c34;
+  height:1200px;
 }
 
 .App-logo {

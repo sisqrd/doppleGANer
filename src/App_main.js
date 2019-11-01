@@ -64,8 +64,6 @@ async function faceDetect(url) {
   //console.log(newResult);
 }
 
-let reader = new FileReader();
-
 class App extends React.Component {
 
   state = {file: null, counter: 0}
@@ -123,46 +121,7 @@ class App extends React.Component {
   handleLoad() {
   console.log('On Mount Succesfull'); //  $ is available here
   }
-
-  faceDetect() {
-    console.log(this.state.file);
-    console.log(this.state.iurl);
-    //   const request = require('request');
-    //   const subscriptionKey = process.env.REACT_APP_SUBS_KEY
-    //   const uriBase = process.env.REACT_APP_URI_BASE;
-    // // // const imageUrl =
-    // // //   'https://upload.wikimedia.org/wikipedia/commons/3/37/Dagestani_man_and_woman.jpg';
-    // // // // Request parameters.
-    // const params = {
-    // 'returnFaceId': 'true',
-    // 'returnFaceLandmarks': 'false',
-    // 'returnFaceAttributes': 'age,gender,headPose,smile,facialHair,glasses,' +
-    //     'emotion,hair,makeup,occlusion,accessories,blur,exposure,noise'
-    // } ;
-  
-    // const options = {
-    // uri: uriBase,
-    // qs: params,
-    // body: '{"url": ' + '"' + this.state.iurl + '"}',
-    // headers: {
-    //     'Content-Type': 'application/octet-stream',
-    //     'Ocp-Apim-Subscription-Key' : subscriptionKey,
-    // }
-    // };
-
-    // request.post(options, (error, response, body) => {
-    // if (error) {
-    // console.log('Error: ', error);
-    // return;
-    // }
-    // let jsonResponse = JSON.stringify(JSON.parse(body), null, '  ');
-    // console.log('JSON Response\n');
-    // console.log(jsonResponse);
-    // });    
-  }
-
-  
-  
+    
   render() {
     let { file } = this.state;
     let url = file && blobUrl(file);

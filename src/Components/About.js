@@ -1,5 +1,6 @@
 import React from 'react';
-import cover from './image/cover.jpg'
+import utils from '../Utils';
+import cover from '../image/cover.jpg'
 
 class About extends React.Component {
     constructor(props) {

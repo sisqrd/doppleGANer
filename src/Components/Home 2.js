@@ -1,5 +1,7 @@
 import React from 'react';
-import cover from './image/cover.jpg'
+import cover from '../image/cover.jpg'
+import Label from './Label';
+import { Button } from 'semantic-ui-react'
 
 class Home extends React.Component {
     constructor(props) {
@@ -12,7 +14,8 @@ class Home extends React.Component {
 
     onClick=()=>{
         console.log('Someone clicked the button');
-        this.props.redirect('About');
+        this.props.redirect('Label')
+
     }
 
     render() {
@@ -38,9 +41,9 @@ class Home extends React.Component {
     
                 <div className="offset-md-3 col-md-6">
                   <div className="form-group files">
-                    <label>Upload File</label>
+                    <label>START BY UPLOADING A FILE OR USING THE WEBCAM TO CAPTURE YOUR SELF PORTRAIT</label>
                     <input type="file" name="file" className="form-control"  onChange={this.onChangeHandler}/>
-                    <button type="button" onClick={this.onClick}>Analyse</button>     
+                    <Button id='button' basic inverted type="button" onClick={this.onClick}>Classify</Button>     
                   </div>
     
                 </div>
