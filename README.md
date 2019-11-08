@@ -7,12 +7,10 @@ The project has two main goals:
 1. Compare how you see yourself versus how existing facial recognition systems see you 
 2. Contribute to a slow growing dataset curation process 
 
-##The browser based application allows :
+## The browser based application allows :
 (i) individuals to upload their own images and assigned labels
 (ii) provide a visual comparison of results from commonly used facial recognition tools
 (iii) giving the user a choice of including their datasets. 
-
-
 
 
 
