@@ -1,6 +1,11 @@
 # doppleGANer 
 A creative AI project allowing for user input and classifications
 
+The project has two main goals:
+1. Compare how you see yourself versus how existing facial recognition systems see you 
+2. Contribute to a slow growing dataset curation process 
+
+Human centered design plays a crucial role in establishing standards in the collection, curation and evaluation of image datasets to mitigate harmful bias and ensure fairness in the curation of image datasets. In this paper, I introduce DoppleGANer, a crowd-sourced tool as a new way of approaching image data curation with two goals, firstly serving educational purposes in directly comparing how you see yourself versus how AI sees you and secondly as a new way of collecting crowd sourced data over time. The browser based application allows (i) individuals to upload their own images and assigned labels, (ii) provide a visual comparison of results from commonly used facial recognition tools, and (iii) giving the user a choice of including their datasets. The hope is that through a slow data collection and curation process over time, users will have more control over how they are being represented and classified, how learning about how AI’s lens can often be misguided or biased. I look to propose novel interaction mechanisms to support effective crowd labeling and dataset refinement. Due to data ethics and privacy, user uploaded images will be matched with the closest match of a generated version using a Generative Model. This paper shows how design plays an ever increasing role in becoming service designers of AI systems to mitigate harmful bias. DoppleGANer demonstrates how UX/AI design principles can be introduced to create more human centered data curation tools for the training of ML models. 
 
 
 
