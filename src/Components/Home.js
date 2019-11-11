@@ -6,6 +6,32 @@ import { Button } from 'semantic-ui-react'
 
 let reader = new FileReader();
 
+let result = null;
+
+let faceDetect = async (url) => {
+  if(url){
+  const uriBase = process.env.REACT_APP_URI_BASE;
+  const subscriptionKey = process.env.REACT_APP_SUBS_KEY;
+  const type = 'blob';
+  const faceID = 'true';
+  const faceLandmarks = 'true';
+  const faceAttributes = 'age,gender,smile,facialHair,glasses,emotion,hair,makeup,accessories';
+  const response = await fetch(
+    `${uriBase}?returnFaceId=${faceID}&returnFaceLandmarks=${faceLandmarks}&returnFaceAttributes=${faceAttributes}`,
+    {
+      method: 'POST',
+      headers: new Headers({
+        'content-type': 'application/octet-stream',
+        'Ocp-Apim-Subscription-Key': subscriptionKey,
+      }),
+      body: url,
+    }
+  );
+  let newResult = await response.json();
+  return newResult;
+} else console.log('Defected Blob');
+}
+
 class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -59,10 +85,19 @@ class Home extends React.Component {
 
     onSendClick=()=>{
       if(this.state.blob != null) {
-      console.log(utils.detectFace(this.state.blob));
+        (async () => {
+          let res = await faceDetect(this.state.blob);
+          result = await res;
+        })()
     } else {
       console.log('No Blob Found');
     }
+    }
+
+    onJSONHandler=()=>{
+      if (result != null) {
+        this.props.redirect('Analyze', result);
+      }
     }
 
     render() {
@@ -86,6 +121,7 @@ class Home extends React.Component {
                     <input type="file" name="file" className="form-control"  onChange={this.onChangeHandler}/>
                     <Button id='button' basic inverted type="button" onClick={this.onClick}>Create Blob</Button>
                     <Button id='button' basic inverted type="button" onClick={this.onSendClick}>Send</Button> 
+                    <Button id='button' basic inverted type="button" onClick={this.onJSONHandler}>JSON</Button>      
                   </div>
                 </div>
               </div>

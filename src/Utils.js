@@ -19,7 +19,6 @@ const utils = {
           }
         );
         let newResult = await response.json();
-        //console.log(newResult);
         return newResult;
       } else console.log('Defected Blob');
     }

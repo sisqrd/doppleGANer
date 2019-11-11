@@ -41,7 +41,7 @@ const handleFileRead = (e) => {
   }
 
 async function faceDetect(url) {
-
+  
   const uriBase = process.env.REACT_APP_URI_BASE;
   const subscriptionKey = process.env.REACT_APP_SUBS_KEY;
   const type = 'blob';
@@ -61,6 +61,7 @@ async function faceDetect(url) {
   );
   let newResult = await response.json();
   results = newResult;
+  return newResult;
   //console.log(newResult);
 }
 
@@ -93,26 +94,12 @@ class App extends React.Component {
   }
   
   onClickHandler=()=>{
-    // console.log(this.state.file);
-    // this.reader.onloadend = handleFileRead;
-    // reader.readAsDataURL(this.state.file);
     console.log(results);
-   //console.log(reader.result);
-
-    //console.log(this.state.file);
-    // const data = new FormData()
-    // data.append('file', this.state.selectedFile)
-    // console.log("button clicked")
-    // axios.post("http://localhost:8000/upload", data,{
-    // })
-    // .then((response)=> {
-    //   console.log(response);
-    // }, (error)=>{
-    //   console.log(error);
-    // })
-
-    //this.faceDetect();
     }
+
+  onJSONHandler=()=>{
+      console.log(results);
+  }
 
   componentDidMount() {
       window.addEventListener('load', this.handleLoad);
@@ -150,21 +137,16 @@ class App extends React.Component {
               <div className="form-group files">
                 <label>Upload File</label>
                 <input type="file" name="file" className="form-control" onChange={this.onChangeHandler}/>
-                <button type="button" onClick={this.onClickHandler}>Analyse</button>     
+                <button type="button" onClick={this.onClickHandler}>Analyse</button>
+                <button type="button" onClick={this.onJSONHandler}>JSON</button>        
               </div>
-
             </div>
           </div>
-
         </div>
-
     </div> 
-
     )
     }
 }
-
-    
 
 export default App;
 
