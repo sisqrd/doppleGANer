@@ -96,7 +96,7 @@ class Home extends React.Component {
 
     onJSONHandler=()=>{
       if (result != null) {
-        this.props.redirect('Analyze', result);
+        this.props.redirect('Analyze', result, this.state.blob);
       }
     }
 

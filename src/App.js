@@ -24,12 +24,13 @@ class App extends React.Component {
         )
     }
 
-    redirectWithJSON = (page, json) => {
+    redirectWithJSON = (page, json, blb) => {
         console.log(json);
         this.setState(
             {
                 currentPage: page,
-                jason: json
+                jason: json,
+                blob: blb
             }
         )
     }
@@ -37,7 +38,7 @@ class App extends React.Component {
     renderPage = () => {
         if (this.state.currentPage === 'Home') return <Home redirect={this.redirectWithJSON}/>;
         if (this.state.currentPage === 'Label') return <Label redirect={this.redirect}/>;
-        if (this.state.currentPage === 'Analyze') return <Analyze redirect={this.redirect} jason={this.state.jason}/>;
+        if (this.state.currentPage === 'Analyze') return <Analyze redirect={this.redirect} jason={this.state.jason} blb={this.state.blob}/>;
         if (this.state.currentPage === 'About') return <About redirect={this.redirect}/>;
         else return <Home redirect={this.redirect}/>;
     }

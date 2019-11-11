@@ -48,6 +48,10 @@ class Analyze extends React.Component {
 // smile: 0.092
 
     render() {
+        let age = (this.getAge(this.props.jason[0]));
+        let emotion = (this.getEmotion(this.props.jason[0]));
+        let gender = (this.getGender(this.props.jason[0]));
+        let smile = (this.getSmile(this.props.jason[0]));
         return ( 
           <div id="Analyze">
             <h1>This is how the machine sees you</h1>
@@ -55,11 +59,16 @@ class Analyze extends React.Component {
             <Button id='button' basic inverted type="button" onClick={this.onJSONHandler}>JSON</Button>
                 <Grid.Row stretched>
                     <Grid.Column>
-                        <Segment>1</Segment>
+                        <Segment>Age</Segment>
+                        <Segment>Emotion</Segment>
+                        <Segment>Gender</Segment>
+                        <Segment>Smile</Segment>
                     </Grid.Column>
                  <Grid.Column>
-                    <Segment>1</Segment>
-
+                        <Segment>{age}</Segment>
+                        <Segment>{emotion}</Segment>
+                        <Segment>{gender}</Segment>
+                        <Segment>{smile}</Segment>
                 </Grid.Column>
                 <Grid.Column>
                     <Segment></Segment>
