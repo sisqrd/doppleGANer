@@ -2,7 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import cover from './image/cover.jpg'
 import './App.css';
-import Classify from './Classify';
+import Home from './Home';
+import Label from './Label';
+import Analyze from './Analyze';
 
 class App extends React.Component {
   constructor(props){
@@ -11,7 +13,6 @@ class App extends React.Component {
         selectedFile:null,
         currentPage:'Home',
       } )
-      this.onChangeHandler = this.onChangeHandler.bind(this);
   }
   
   redirect(page){
@@ -20,71 +21,28 @@ class App extends React.Component {
     })
 }
 
-  onChangeHandler=event=>{
-    console.log(event.target.files[0])
-    this.setState({
-      selectedFile: event.target.files[0],
-      loaded:0,
-    })
-  }
-  
-  onClickHandler=()=>{
-    const data = new FormData()
-    data.append('file', this.state.selectedFile)
-    console.log("button clicked")
-    axios.post("http://localhost:8000/upload", data,{
-    })
-    .then((response)=> {
-      console.log(response);
-      this.setState({
-        currentPage: 'Classify'
-      })
-    }, (error)=>{
-      console.log(error);
-    })
+    redirect =(page)=>{
+        this.setState(
+            {
+                currentPage:page,
+            }
+        )
     }
-
-    onClickHandler2=()=>{
-        this.setState({
-          currentPage: 'Classify'
-        })
-      }
-  
-
-  render() {
-    return ( 
-      <div className="App">
+    
+    renderPage = () => {
+        if (this.state.currentPage === 'Home') return <Home redirect={this.redirect}/>;
+        if (this.state.currentPage === 'Label') return <Label redirect={this.redirect}/>;
+        if (this.state.currentPage === 'Analyze') return <Analyze redirect={this.redirect}/>;
+      
         
-        <img src={cover} className="App-logo" alt="logo" />
-        <h1>
-          doppleGANer
-        </h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          A Project for Creative AI: Contribute to a slow growing dataset by uploading your own portrait and labels. 
-        </a>
-        <p>Your image will not be stored in a database, but rather matched with a generated image.</p>
-        <div className ="container">
-          <div className="row">
-
-            <div className="offset-md-3 col-md-6">
-              <div className="form-group files">
-                <label>Upload File</label>
-                <input type="file" name="file" className="form-control" onChange={this.onChangeHandler}/>
-                <button type="button" onClick={this.onClickHandler}>Upload</button>
-                <button type="button" onClick={this.onClickHandler2}>Test</button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-    </div> 
-
+        else return //<App onComplete={this.onComplete}/>
+    }
+  
+    render() {
+        return ( 
+          <div className='App'>
+            <this.renderPage/>
+        </div> 
     )
     }
 }
