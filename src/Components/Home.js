@@ -67,7 +67,7 @@ class Home extends React.Component {
           uInt8Array[i] = raw.charCodeAt(i);
       }
       const blb = new Blob([uInt8Array], { type: contentType });
-      this.setState({blob: blb});
+      this.setState({blob: blb, result: reader.result});
       console.log(blb);
     }
 
@@ -85,6 +85,8 @@ class Home extends React.Component {
 
     onSendClick=()=>{
       if(this.state.blob != null) {
+        console.log('BLOB SHOW');
+        console.log(this.state.blob);
         (async () => {
           let res = await faceDetect(this.state.blob);
           result = await res;
@@ -96,7 +98,8 @@ class Home extends React.Component {
 
     onJSONHandler=()=>{
       if (result != null) {
-        this.props.redirect('Analyze', result, this.state.blob);
+
+        this.props.redirect('Analyze',result,this.state.result);
       }
     }
 

@@ -7,6 +7,9 @@ import { Grid, Segment, Button } from 'semantic-ui-react'
 class Analyze extends React.Component {
     constructor(props) {
         super(props);
+        this.state ={
+            // Set your state here
+        }
     }
 
     onJSONHandler=()=>{
@@ -48,6 +51,7 @@ class Analyze extends React.Component {
 // smile: 0.092
 
     render() {
+        let url = (this.props.blb ? this.props.blb : '');
         let age = (this.getAge(this.props.jason[0]));
         let emotion = (this.getEmotion(this.props.jason[0]));
         let gender = (this.getGender(this.props.jason[0]));
@@ -56,6 +60,7 @@ class Analyze extends React.Component {
           <div id="Analyze">
             <h1>This is how the machine sees you</h1>
             <Grid columns={3} divided>
+            <img src={url} className="App-logo" alt="logo" />
             <Button id='button' basic inverted type="button" onClick={this.onJSONHandler}>JSON</Button>
                 <Grid.Row stretched>
                     <Grid.Column>
