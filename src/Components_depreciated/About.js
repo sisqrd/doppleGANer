@@ -2,7 +2,7 @@ import React from 'react';
 import utils from '../Utils';
 import cover from '../image/cover.jpg'
 
-class Label extends React.Component {
+class About extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -13,7 +13,7 @@ class Label extends React.Component {
 
     onClick=()=>{
         console.log('Someone clicked the button');
-        this.props.redirect('Compare');
+        this.props.redirect('Home');
     }
 
     render() {
@@ -21,7 +21,7 @@ class Label extends React.Component {
           <div className="App"> 
             <img src={cover} className="App-logo" alt="logo" />
             <h1>
-              doppleGANer LABEL
+              doppleGANer ABOUT
             </h1>
             <div className ="container">
               <div className="row">
@@ -37,4 +37,4 @@ class Label extends React.Component {
       }
 }
 
-export default Label;
+export default About;

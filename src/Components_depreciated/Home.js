@@ -121,6 +121,14 @@ class Home extends React.Component {
                 <div className="offset-md-3 col-md-6">
                   <div className="form-group files">
                     <label>START BY UPLOADING A FILE OR USING THE WEBCAM TO CAPTURE YOUR SELF PORTRAIT</label>
+                    <Webcam
+                      audio={false}
+                      height={360}
+                      width={720}
+                      ref={this.setRef.bind(this)}
+                      screenshotFormat="image/jpeg"
+                      className='webcam'
+                    />
                     <input type="file" name="file" className="form-control"  onChange={this.onChangeHandler}/>
                     <Button id='button' basic inverted type="button" onClick={this.onClick}>Create Blob</Button>
                     <Button id='button' basic inverted type="button" onClick={this.onSendClick}>Send</Button> 
