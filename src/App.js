@@ -6,16 +6,16 @@ import About from './Components/About';
 import Compare from './Components/Compare';
 import Start from './Components/Start';
 import Label from './Components/Label';
+import { Button } from 'semantic-ui-react';
 
 class App extends React.Component {
-    
-    state = {file: null, counter: 0}
   
     constructor(props){
-      super(props)
-      this.state = {currentPage: 'Home', 
-                    img: null,
+    super(props)
+        this.state = {
+                    currentPage: 'Home', 
                     jason: null,
+                    link: null,
                     labels: null
                     }
     }
@@ -28,30 +28,29 @@ class App extends React.Component {
         )
     }
 
-    redirectFromStart = (page, json, img) => {
-        console.log(json);
+    redirectFS = (page,link,jason) => {
         this.setState(
             {
                 currentPage: page,
-                jason: json,
-                img: img
+                link: link,
+                jason: jason
             }
         )
     }
 
     renderPage = () => {
-        if (this.state.currentPage === 'Start') return <Start redirect={this.redirectWithJSON}/>;
-        if (this.state.currentPage === 'Label') return <Label redirect={this.redirect}/>;
-        if (this.state.currentPage === 'Compare') return <Compare redirect={this.redirect} jason={this.state.jason} blb={this.state.blob}/>;
-        if (this.state.currentPage === 'About') return <About redirect={this.redirect}/>;
-        else return <Start redirect={this.redirect}/>;
+        const k = this.state.currentPage;
+        if (k === 'Label') return <Label redirect={this.redirect} img={this.state.link} jason={this.state.jason}/>;
+        if (k === 'Compare') return <Compare redirect={this.redirect} img={this.state.link} jason={this.state.jason}/>;
+        if (k === 'About') return <About redirect={this.redirect}/>;
+        if (k === 'Start' || !(k in ['Label', 'Compare', 'About'])) return <Start redirect={this.redirectFS}/>;
     }
   
     render() {
         return ( 
-          <div className="App">
-            <this.renderPage/>
-        </div> 
+            <div className="App">
+                <this.renderPage/>
+            </div> 
     )
     }
 }
