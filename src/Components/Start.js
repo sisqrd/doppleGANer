@@ -28,7 +28,6 @@ const convertURL2Blob = (imageSrc) => {
 }
 
 const testLink = 'https://res.cloudinary.com/dkbmlcs4a/image/upload/v1574626077/face/pdqk99sydv7eht2ajmnk.jpg'
-const testLink2 = 'https://res.cloudinary'
 
 class Start extends React.Component {
     
@@ -112,9 +111,9 @@ class Start extends React.Component {
 
     onClickSend=()=>{
       console.log('Send');
-        if (this.state.link != null || true) {
+        if (this.state.link != null) {
             //this.faceDetect(this.state.link);
-            this.faceDetect(testLink);
+            this.faceDetect(this.state.link);
         } else {
         console.log('No Link Found');   
         }

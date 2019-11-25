@@ -1,6 +1,9 @@
 const express = require('express');
 const server = express();
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 var bodyParser = require("body-parser");
 
 const port = process.env.PORT || 3001;
@@ -12,9 +15,9 @@ const cloudinary = require("cloudinary").v2;
 const cloudinaryStorage = require("multer-storage-cloudinary");
 
 cloudinary.config({
-    cloud_name: 'dkbmlcs4a/',//process.env.CLOUDINARY_NAME,
-    api_key: '526961457181978',//process.env.CLOUDINARY_API_KEY,
-    api_secret: 'nDPx4ErOSdFzVGl8dsm6SHLf1ag'//process.env.CLOUDINARY_API_SECRET
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 server.use(bodyParser.urlencoded({ extended: false }));
