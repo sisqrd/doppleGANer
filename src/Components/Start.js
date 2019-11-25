@@ -4,6 +4,8 @@ import axios from 'axios';
 import utils from '../Utils';
 import cover from '../image/cover.jpg';
 import { Button } from 'semantic-ui-react';
+const _ = require('lodash');
+//import { throttle } from lodash;
 
 let reader = new FileReader();
 
@@ -36,8 +38,10 @@ class Start extends React.Component {
         this.state = {
         img: null,
         link: null,
+        linkSent: null,
         jason: null
         }
+      this.onClickLabelThrottled = _.throttle(this.onClickLabel, 2000);
     }
 
     setRef=(webcam)=>{
@@ -57,8 +61,22 @@ class Start extends React.Component {
       );
     }
 
-    faceDetect = async (url) => {
+    uploadNdetect = (file) => {
       let currentComponent = this;
+      let url = null;
+      let jas = null;
+      axios.post(`http://localhost:3001/api/images`, {file : file })
+      .then(function (response) {
+        url = response.data.url;
+      })
+      .then(function () {
+        currentComponent.faceDetect(url);
+    })
+  }
+
+    faceDetect = (url) => {
+      let currentComponent = this;
+      let jas = null;
       fetch(
         process.env.REACT_APP_URI_BASE,
         { method: 'POST',
@@ -68,13 +86,17 @@ class Start extends React.Component {
       )
       .then(response => response.json())
       .then(json => {
+        jas = json;
         currentComponent.setState(
         {
-        jason: json
+        jason: json,
+        linkSent: url,
+        link: url
         }
-        )
-      }
-    );
+      )})
+      .then(function () {
+        currentComponent.props.redirect('Label',url,jas);
+      });
     }
     
     onClickCapture=()=>{
@@ -86,22 +108,15 @@ class Start extends React.Component {
         })
         } else {
         this.setState({
-            img: null
+            img: null,
+            link: null,
+            jason: null
         })    
         }
     }
 
-    onClickRetake=()=>{
-        console.log('Retake');
-        this.setState({
-            img: null,
-            link: null,
-            jason: null
-        })
-    }
-
-    onClickSave=()=>{
-      console.log('Save');
+    onSave=()=>{
+      console.log('Saving to Cloud');
       if (this.state.img != null) {
         this.uploadFile(this.state.img);
       } else {
@@ -109,10 +124,9 @@ class Start extends React.Component {
       }
     }
 
-    onClickSend=()=>{
-      console.log('Send');
+    onSend=()=>{
+      console.log('Sending Image for Analysis');
         if (this.state.link != null) {
-            //this.faceDetect(this.state.link);
             this.faceDetect(this.state.link);
         } else {
         console.log('No Link Found');   
@@ -145,58 +159,49 @@ class Start extends React.Component {
       //{eyeMakeup: true, lipMakeup: false}
     }
     
-    onClick=()=>{
-      console.log(this.props);
-      this.props.redirect('Label',this.state.link,this.state.jason);
+    onClickLabel=()=>{
+      console.log('Label');
+        this.uploadNdetect(this.state.img);   
     }
+      // if(this.state.link != null && this.state.jason != null) {
+      //   this.props.redirect('Label',this.state.link,this.state.jason);
+      // }
 
     onClickTest=()=>{
-      console.log(this.state.jason);
-      if(this.state.jason != null) {
-      const uwp = this.jasonUnwrap(this.state.jason);
-      console.log('Age',this.getAge(uwp));
-      console.log('Emotion', this.getEmotion(uwp));
-      console.log('Gender', this.getGender(uwp));
-      console.log('Smile', this.getSmile(uwp));
-      console.log('Makeup', this.getMakeup(uwp));
-      } else
-      {
-      console.log('Jason is Null');
-      }
+      console.log('Results:', this.state.link, this.state.jason);
     }
 
     render() {
+    const cap = this.state.img == null ? 'Capture Photo' : 'Retake';
     return (
-          <div className="App"> 
-            <h1>
-            doppleGANer
-            </h1>
-            <div className ="container">
-              <div className="row">
-                <div className="offset-md-3 col-md-6">
-                  <div className="form-group files">   
-                    { (this.state.img != null) ? (<img src={this.state.img} className="App-logo" alt="logo" />) :
-                    (<Webcam
-                      audio={false}
-                      height={360}
-                      width={500}
-                      ref={this.setRef}
-                      screenshotFormat="image/jpeg"
-                      className='webcam'
-                    />)}
-                    {/* <input type="file" name="file" className="form-control"  onChange={this.onChangeHandler}/> */}
-                    <Button type='submit' onClick={this.onClickCapture}>Capture Photo</Button>
-                    <Button type='submit' onClick={this.onClickRetake}>Retake</Button>
-                    <Button type='submit' onClick={this.onClickSave}>Save Image</Button>
-                    <Button type='submit' onClick={this.onClickSend}>Send Image</Button>
-                    <Button type='submit' onClick={this.onClick}>Next</Button>
-                    <Button type='submit' onClick={this.onClickTest}>Test</Button>      
-                  </div>
-                </div>
+        <div className="App"> 
+        <div className ="container" id="Container">
+        <h1>
+                Start by taking a selfie
+        </h1>
+        <div className="row">
+    
+        <div className="offset-md-3 col-md-6">
+            <div className="form-group files">   
+            
+              { (this.state.img != null) ? (<img src={this.state.img} className="App-logo" alt="logo" />) :
+                (<Webcam
+                  audio={false}
+                  height={360}
+                  width={500}
+                  ref={this.setRef}
+                  screenshotFormat="image/jpeg"
+                  className='webcam'
+              />)}
+                <Button type='submit' onClick={this.onClickCapture}>{cap}</Button>
+                <Button type='submit' onClick={this.onClickLabel}>Label</Button>
+                <Button type='submit' onClick={this.onClickTest}>Test</Button>          
               </div>
             </div>
+          </div>
         </div>
-        )
+      </div> 
+       )
       }
 }
 

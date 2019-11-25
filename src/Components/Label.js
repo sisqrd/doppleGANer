@@ -1,47 +1,110 @@
 import React from 'react';
-import utils from '../Utils';
-import cover from '../image/cover.jpg'
+import { Grid, Image, Form, Button, Checkbox, Segment, Menu } from 'semantic-ui-react'
+import axios from "axios";
 
 class Label extends React.Component {
     constructor(props) {
         super(props);
+        this.state={
+            gender:'',
+            ethnicity:'', 
+            age:'', 
+            sentiment:'', 
+            identity:'',
+            context:'', 
+        }
     }
+    
+    handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
     onChangeHandler=event=>{
         console.log('File Changed');
     }
 
-    onClick=()=>{
-        console.log('Someone clicked the button');
-        this.props.redirect('Compare');
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const { gender, ethnicity, age, sentiment, identity, context} = this.state;
+        const labels = { Gender : gender, Ethnicity : ethnicity, Age : age, Sentiment : sentiment, Identity : identity, Context : context };
+        this.props.redirect('Compare', labels);
     }
 
-    onClickPrint=()=>{
-      console.log(this.props.img);
-      console.log(this.props.jason);
-  }
+    onClickTest=()=>{
+      console.log('Results:', this.props.img, this.props.jason);
+    }
 
     render() {
-       let image = (this.props.img != null) ? this.props.img: null;
-        return ( 
-          <div className="App"> 
-            <img src={cover} className="App-logo" alt="logo" />
-            <img src={image} className="App-logo" alt="logo" />
-            <h1>
-              doppleGANer LABEL
-            </h1>
-            <div className ="container">
-              <div className="row">
-                <div className="offset-md-3 col-md-6">
-                  <div className="form-group files">
-                    <button type="button" onClick={this.onClick}>Home</button>
-                    <button type="button" onClick={this.onClickPrint}>Print</button>          
-                  </div>
-                </div>
-              </div>
-            </div>
-        </div>  
-        )
+      let img = this.props.img;
+      const { gender, ethnicity, age, sentiment, identity, context} = this.state;
+      return (
+      <div id="Label">
+      <Button type='submit' onClick={this.onClickTest}>Test</Button>  
+      <div className ="container"  id="Container"> 
+        <Grid celled id="containerLabel">
+        <div>
+        <h1>How do you see yourself? </h1>
+        </div>
+          <Grid.Row>
+              <Grid.Column width={8}>
+                  <Image src={img} />
+              </Grid.Column>
+              <Grid.Column width={8} inverted id='Form'>
+                  <Form inverted onSubmit={this.handleSubmit}>
+                  <Form.Input
+                     label='Gender'
+                     placeholder='Gender'
+                     name='gender'
+                     value={gender}
+                     onChange={this.handleChange}
+                  >
+                  </Form.Input>
+                  <Form.Input
+                     label='Ethnicity'
+                     placeholder='Ethnicity'
+                     name='ethnicity'
+                     value={ethnicity}
+                     onChange={this.handleChange}
+                  >
+                  </Form.Input>
+                  <Form.Input
+                     label='Age'
+                     placeholder='Age'
+                     name='age'
+                     value={age}
+                     onChange={this.handleChange}
+                  >
+                  </Form.Input>
+                  <Form.Input
+                     label='I am feeling ...'
+                     placeholder='Sentiment'
+                     name='sentiment'
+                     value={sentiment}
+                     onChange={this.handleChange}
+                  >
+                  </Form.Input>
+                  <Form.Input
+                     label='I identify as:'
+                     placeholder='Identity'
+                     name='identity'
+                     value={identity}
+                     onChange={this.handleChange}
+                  >
+                  </Form.Input>
+                  <Form.Input
+                     label='Where is this image taken?'
+                     placeholder='Room/Garden/Park'
+                     name='context'
+                     value={context}
+                     onChange={this.handleChange}
+                  >
+                  </Form.Input>  
+                  <Form.Button type='submit' content='How does the machine see me?'/>
+                  </Form>
+              </Grid.Column>
+          </Grid.Row>
+       </Grid>
+  </div>
+  </div>
+        ) 
       }
 }
 

@@ -27,8 +27,11 @@ server.listen(port, () => {
     console.log('App running on port', port)
 })
 
+server.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
 server.post('/api/images', (req, res) => {
-    //console.log('REQ:', req.body) // to see what is returned to you
     const options = {
         folder : 'face',
         allowedFormats: ["jpg", "png"],
@@ -37,6 +40,7 @@ server.post('/api/images', (req, res) => {
     cloudinary.uploader.upload(req.body.file, options,  
     function(error, result) {        
         console.log(result, error); 
+        
         const responce = {
             url: result.url
         }     
