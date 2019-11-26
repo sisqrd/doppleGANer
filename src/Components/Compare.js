@@ -22,7 +22,6 @@ class Compare extends React.Component {
     render() {
         return ( 
           <div id="Compare">
-              <Button type='submit' onClick={this.onClickTest}>Test</Button>  
               <div className ="container"  id="Container"> 
                 <h1>This is how the machine sees you</h1>
                 <Grid columns={2} divided>

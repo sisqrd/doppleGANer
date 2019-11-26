@@ -37,7 +37,6 @@ class Label extends React.Component {
       const { gender, ethnicity, age, sentiment, identity, context} = this.state;
       return (
       <div id="Label">
-      <Button type='submit' onClick={this.onClickTest}>Test</Button>  
       <div className ="container"  id="Container"> 
         <Grid celled id="containerLabel">
         <div>
