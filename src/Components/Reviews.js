@@ -1,6 +1,6 @@
 import React from 'react';
 
-class About extends React.Component {
+class Reviews extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -11,7 +11,7 @@ class About extends React.Component {
 
     render() {
         return ( 
-          <div className="About"> 
+          <div className="Reviews"> 
             <div>
               <div><h2 id="title2">This is a project made for Creative AI</h2></div> 
             </div>
@@ -20,4 +20,4 @@ class About extends React.Component {
     }
 }
 
-export default About;
+export default Reviews;

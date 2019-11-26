@@ -7,8 +7,7 @@ class Manifesto extends React.Component {
     }
     
     onClick=()=>{
-        console.log('Someone clicked the button');
-        this.props.redirect('Home')
+        this.props.redirect('Start')
     }
 
     render() {
