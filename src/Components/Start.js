@@ -195,7 +195,7 @@ class Start extends React.Component {
               />)}
                 <Button type='submit' onClick={this.onClickCapture}>{cap}</Button>
                 <Button type='submit' onClick={this.onClickLabel}>Label</Button>
-                <Button type='submit' onClick={this.onClickTest}>Test</Button>          
+                {/* <Button type='submit' onClick={this.onClickTest}>Test</Button>           */}
               </div>
             </div>
           </div>

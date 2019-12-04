@@ -37,7 +37,6 @@ class Label extends React.Component {
       const { gender, ethnicity, age, sentiment, identity, context} = this.state;
       return (
       <div id="Label">
-      <Button type='submit' onClick={this.onClickTest}>Test</Button>  
       <div className ="container"  id="Container"> 
         <Grid celled id="containerLabel">
         <div>
@@ -50,7 +49,7 @@ class Label extends React.Component {
               <Grid.Column width={8} inverted id='Form'>
                   <Form inverted onSubmit={this.handleSubmit}>
                   <Form.Input
-                     label='Gender'
+                     label='I identify as'
                      placeholder='Gender'
                      name='gender'
                      value={gender}
@@ -82,8 +81,8 @@ class Label extends React.Component {
                   >
                   </Form.Input>
                   <Form.Input
-                     label='I identify as:'
-                     placeholder='Identity'
+                     label='I am also a'
+                     placeholder='Student/Engineer/Dreamer...'
                      name='identity'
                      value={identity}
                      onChange={this.handleChange}
