@@ -30,30 +30,35 @@ class Compare extends React.Component {
 
     getEmotion=(jason)=>{
       const key = Object.keys(jason.faceAttributes.emotion).reduce((a, b) => jason.faceAttributes.emotion[a] > jason.faceAttributes.emotion[b] ? a : b);
-      return JSON.stringify({[key] :jason.faceAttributes.emotion[key]});
+      const em = key.charAt(0).toUpperCase() + key.slice(1);
+      return (jason.faceAttributes.emotion[key] * 100).toFixed(2) + "% " + em; 
     }
 
     getGender=(jason)=>{
-      return jason.faceAttributes.gender;
+      let gen = jason.faceAttributes.gender;
+      return gen.charAt(0).toUpperCase() + gen.slice(1); 
     }
 
     getSmile=(jason)=>{
-      return jason.faceAttributes.smile;
+      return (jason.faceAttributes.smile * 100).toFixed(2) + "%";
     }
 
     getMakeup=(jason)=>{
-      return JSON.stringify(jason.faceAttributes.makeup);
-      //{eyeMakeup: true, lipMakeup: false}
+      let str = "";
+      Object.entries(jason.faceAttributes.makeup).forEach(([key, value]) => {
+        str += key.charAt(0).toUpperCase() + key.slice(1) + ": " + value + " ";
+     });
+      return str;
     }
 
     getBald=(jason)=>{
-      return jason.faceAttributes.hair.bald;
-      //{eyeMakeup: true, lipMakeup: false}
+      return  (jason.faceAttributes.hair.bald * 100).toFixed(2) + "%";
     }
 
     getHairColor=(jason)=>{
       const key = Object.keys(jason.faceAttributes.hair.hairColor).reduce((a, b) => jason.faceAttributes.hair.hairColor[a].confidence > jason.faceAttributes.hair.hairColor[b].confidence ? a : b);
-      return JSON.stringify({[jason.faceAttributes.hair.hairColor[key].color] : jason.faceAttributes.hair.hairColor[key].confidence});
+      const em = jason.faceAttributes.hair.hairColor[key].color.charAt(0).toUpperCase() + jason.faceAttributes.hair.hairColor[key].color.slice(1);
+      return (jason.faceAttributes.hair.hairColor[key].confidence * 100).toFixed(2) + "% " + em; 
       //{color: "other", confidence: 0.06}
     }
 
@@ -107,7 +112,8 @@ class Compare extends React.Component {
                               <Card.Content>
                                 <Card.Header>Microsoft API</Card.Header>
                                 <Card.Description>
-                                  How does the machine see you? Category names are predetermined by the API
+                                  How does the machine see you? 
+                                  The category names are predetermined by the API
                                 </Card.Description>
                               </Card.Content>
                               <Card.Content extra>

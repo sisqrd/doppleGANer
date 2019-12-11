@@ -22,14 +22,19 @@ body {
   text-align: center;
   border: 50px; 
   background-image: linear-gradient(-180deg, #141e30 0%,  #4ca1af  98%);
-  height:100vh;
   width: 100%;
   justify-content: center;
   align-items: center;
   display:flex;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 body {
   min-height: 100vh;
+}
+
+html {
+  height: 100%;
 }
 
 .h1,h1 {
@@ -42,10 +47,35 @@ body {
   float:center;
 }
 
-#Grid{
+.Grid{
   height:550px;
   margin-bottom:5px;
 }
+
+.ui.grid>.row {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: inherit;
+  -ms-flex-pack: inherit;
+  justify-content: inherit;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: center;
+  width: 100%!important;
+  padding-left: 40px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  justify-content: center;
+}
+
 
 #colorblack{
   color:rgba(0,0,0,0.75);
@@ -106,14 +136,21 @@ h2{
 }
 
 p {
-  color:white;
-  font-size: 1.0rem;
+  font-size: 1.4rem;
   text-align: left;
   padding:20px;
 }
 
+p dark {
+  color:black;
+  display: block; 
+  font-family: 'Open Sans', sans-serif;
+  padding-top:10px;
+}
+
 
 p span{
+  color:white;
   display: block; 
   font-family: 'Open Sans', sans-serif;
   padding-top:10px;
@@ -184,7 +221,7 @@ label{
 }
 
 #mainWrapper{
-      height: 50%;
+      height: 60%;
       display: flex;
       background-image: linear-gradient(-180deg, #141e30 0%,  #4ca1af  98%);
       justify-content: center;
@@ -219,7 +256,7 @@ label{
 
 #contentWrapper2{
   padding: 15px;
-  background-color: #4ca1af;
+  background-color:#97d2db;
   background-position: center;
   background-repeat: no-repeat;
   height: 75%;
@@ -229,6 +266,9 @@ label{
   background-size: cover;
 }
 
+body > #root > div {
+  height: 100vh;
+}
 
 #About{
   display:block;
@@ -238,10 +278,14 @@ label{
 #EnterButton{
   height:65px;
   width: 150px;
-  float:left;
+  float:right;
   margin:20px;
   display: block;
   font-size: 1.5rem;
+}
+
+#EnterDiv{
+  margin-bottom:20px;
 }
 
 #Form{
@@ -345,10 +389,6 @@ button {
   text-align:center;
   padding:50px;
   margin-top:50px;
-}
-
-:root {
-  height: 125vh;
 }
 
 #ContainerCompare{
@@ -463,5 +503,6 @@ button {
 #root{
   width:100vh;
   height:100vh;
+  
 
 }
