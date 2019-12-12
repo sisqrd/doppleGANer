@@ -25,9 +25,9 @@ app.use(router)
 
 app.use('/*', staticFiles)
 
-app.set('port', (process.env.PORT || 3001))
+const port = process.env.PORT || 8000
 
-app.listen(app.get('port'), () => {
-  console.log(`Listening on ${app.get('port')}`)
-})
+app.listen(port, () => {
+  console.log("App is running on port " + port);
+});
 
