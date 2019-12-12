@@ -12,7 +12,7 @@ class Compare extends React.Component {
 
     onClick=()=>{
         console.log('Someone clicked the button');
-        this.props.redirect('Start');
+        console.log('Results:', this.props.img, this.props.jason, this.props.label);
     }
 
     onClickTest=()=>{
