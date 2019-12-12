@@ -34,8 +34,8 @@ app.use(router);
 
 app.use('/*', staticFiles);
 
-app.set('port', process.env.PORT || 3001);
+var port = process.env.PORT || 8000;
 
-app.listen(app.get('port'), function () {
-  console.log('Listening on ' + app.get('port'));
+app.listen(port, function () {
+  console.log("App is running on port " + port);
 });
