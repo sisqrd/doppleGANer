@@ -3,7 +3,7 @@ import Webcam from 'react-webcam';
 import axios from 'axios';
 import utils from '../Utils';
 import cover from '../image/cover.jpg';
-import { Button } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 const _ = require('lodash');
 //import { throttle } from lodash;
 
@@ -170,11 +170,28 @@ class Start extends React.Component {
     onClickTest=()=>{
       console.log('Results:', this.state.link, this.state.jason);
     }
+    
+    redirectManifestoExtended = () => {
+      this.props.redirect('ManifestoExtended')
+  }
 
     render() {
     const cap = this.state.img == null ? 'Capture Photo' : 'Retake';
     return (
         <div className="App"> 
+            <div id="ManifestoContent" >
+                <div><h1 id="title">JIJO: Looking For Your Contribution</h1> </div>
+                <div><h2 id="title2">Slow and Self-defined Dataset Collection to Mitigate Harmful Bias</h2></div> 
+              
+                <div id="subheading">
+                <p id="startText"> 
+                    <span id="bold">Aiming for a world where AI sees you without any harmful biases.</span> 
+                    {/* <span id="bold" onClick={this.redirectManifestoExtended}>MANIFESTO</span> */}
+                    {/* <span>1. Serving as an educational experience to help users understand how computer vision, more specifically facial recognition, systems work and make sense of the world. Our main focus is on portraying the differences between how users see themselves and how the AI sees them based on an image captured via the user’s webcam. </span>
+                    <span>2. Trying to set up a fresh way of collecting crowdsourced data over time. You will have the option of letting us your photo for a brand new inclusive dataset or use a generated image instead. </span>  */}
+                </p>
+                </div>
+                </div>
         <div className ="container" id="Container">
         <h1>
                 Start by taking a selfie
@@ -193,8 +210,12 @@ class Start extends React.Component {
                   screenshotFormat="image/jpeg"
                   className='webcam'
               />)}
-                <Button type='submit' onClick={this.onClickCapture}>{cap}</Button>
-                <Button type='submit' onClick={this.onClickLabel}>Label</Button>
+                <Button type='submit' onClick={this.onClickCapture}>
+                <i class="camera icon"></i>
+                {cap}</Button>
+                <Button color='orange' type='submit' onClick={this.onClickLabel}>
+                <i class="file alternate icon"></i>
+                  Label</Button>
                 {/* <Button type='submit' onClick={this.onClickTest}>Test</Button>           */}
               </div>
             </div>

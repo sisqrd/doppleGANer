@@ -9,6 +9,7 @@ class Manifesto extends React.Component {
     onClick=()=>{
         this.props.redirect('Start')
     }
+    
 
     render() {
         return ( 

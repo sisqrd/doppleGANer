@@ -18,7 +18,7 @@ class App extends React.Component {
     constructor(props){
     super(props)
         this.state = {
-                    currentPage: 'ManifestoExtended', 
+                    currentPage: 'Start', 
                     jason: null,
                     link: null,
                     labels: null

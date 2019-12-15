@@ -37,6 +37,19 @@ class Label extends React.Component {
       const { gender, ethnicity, age, sentiment, identity, context} = this.state;
       return (
       <div id="Label">
+          <div id="ManifestoContent" >
+                <div><h1 id="title">Looking For Your Contribution</h1> </div>
+                <div><h2 id="title2">Slow and Self-defined Dataset Collection</h2></div> 
+              
+                <div id="subheading">
+                <p id="startText"> 
+                    <span id="bold">To make a better world where AI sees you without any harmful biases.</span> 
+                    <span id="bold" onClick={this.redirectManifestoExtended}>MANIFESTO</span>
+                    {/* <span>1. Serving as an educational experience to help users understand how computer vision, more specifically facial recognition, systems work and make sense of the world. Our main focus is on portraying the differences between how users see themselves and how the AI sees them based on an image captured via the user’s webcam. </span>
+                    <span>2. Trying to set up a fresh way of collecting crowdsourced data over time. You will have the option of letting us your photo for a brand new inclusive dataset or use a generated image instead. </span>  */}
+                </p>
+                </div>
+                </div>
       <div className ="container"  id="Container"> 
         <Grid celled id="containerLabel">
         <div>
@@ -49,7 +62,7 @@ class Label extends React.Component {
               <Grid.Column width={8} inverted id='Form'>
                   <Form inverted onSubmit={this.handleSubmit}>
                   <Form.Input
-                     label='I identify as'
+                     label='My gender identity is'
                      placeholder='Gender'
                      name='gender'
                      value={gender}
@@ -57,7 +70,7 @@ class Label extends React.Component {
                   >
                   </Form.Input>
                   <Form.Input
-                     label='Ethnicity'
+                     label='My ethnicity is'
                      placeholder='Ethnicity'
                      name='ethnicity'
                      value={ethnicity}
@@ -65,7 +78,7 @@ class Label extends React.Component {
                   >
                   </Form.Input>
                   <Form.Input
-                     label='Age'
+                     label='My age is'
                      placeholder='Age'
                      name='age'
                      value={age}
@@ -96,7 +109,11 @@ class Label extends React.Component {
                      onChange={this.handleChange}
                   >
                   </Form.Input>  
-                  <Form.Button type='submit' content='How does the machine see me?'/>
+                  <div id="buttonForm">
+                  <Form.Button type='submit' content='Submit'/>
+                  <Form.Button type='submit' content='How AI Sees Me'/>
+                  <Form.Button type='submit' content='Changed My Mind'/>
+                  </div>
                   </Form>
               </Grid.Column>
           </Grid.Row>
